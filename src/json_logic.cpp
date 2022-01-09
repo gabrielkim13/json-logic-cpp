@@ -92,6 +92,16 @@ namespace json_logic
 			values = json::array({values});
 		}
 
+		/**
+		* In JsonLogic, operation names are treated as keywords and will result in one of the known operations being
+		* invoked with the provided logic and data objects. Logic objects with unrecognized operations are treated as
+		* "useless statements" that just returns its own values, such as:
+		*
+		* myLogic; // Returns myLogic.
+		*
+		* This is an important behaviour for the operation_array_merge, which can receive arbitrary JSON objects in its
+		* parameters and is expected to just return them as elements of a flattened array.
+		*/
 		const auto operation_it = operations_.find(op);
 
 		if (operation_it != operations_.end())

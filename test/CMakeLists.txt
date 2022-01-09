@@ -5,6 +5,7 @@ set(TEST_TARGET ${PROJECT_NAME}_test)
 add_executable(
         ${TEST_TARGET}
 
+        add_rm_operation.cpp
         operations/array/all.cpp
         operations/array/filter.cpp
         operations/array/in.cpp
