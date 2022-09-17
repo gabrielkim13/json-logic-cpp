@@ -3,11 +3,7 @@ project(jsonlogic VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(
-        lib/json/single_include/nlohmann
-
-        src
-)
+include_directories(src)
 
 add_library(
         ${PROJECT_NAME}
@@ -47,6 +43,10 @@ add_library(
         src/operations/string/cat.cpp
         src/operations/string/substr.cpp
 )
+
+find_package(nlohmann_json 3.11.1 REQUIRED)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 
 target_include_directories(
   ${PROJECT_NAME}
