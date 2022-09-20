@@ -1,6 +1,6 @@
 #include "json_logic.h"
 
-#include "json.hpp"
+#include "nlohmann/json.hpp"
 
 #include "exception.h"
 

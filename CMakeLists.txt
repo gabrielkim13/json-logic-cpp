@@ -3,11 +3,12 @@ project(jsonlogic VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(
-        lib/json/single_include/nlohmann
+include_directories(src)
 
-        src
-)
+try_compile(HAVE_EXECUTION ${CMAKE_BINARY_DIR} ${PROJECT_SOURCE_DIR}/src/executiontest.cpp)
+if(NOT HAVE_EXECUTION)
+        message(FATAL_ERROR "Compiler seems to be old, unable to compile this source")
+endif()
 
 add_library(
         ${PROJECT_NAME}
@@ -47,6 +48,11 @@ add_library(
         src/operations/string/cat.cpp
         src/operations/string/substr.cpp
 )
+
+find_package(nlohmann_json 3.11.1 REQUIRED)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
+add_library(jsonlogic::jsonlogic ALIAS jsonlogic)
 
 target_include_directories(
   ${PROJECT_NAME}

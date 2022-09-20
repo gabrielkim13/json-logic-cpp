@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <execution>
 
-#include "json.hpp"
+#include "nlohmann/json.hpp"
 
 #include "exception.h"
 
