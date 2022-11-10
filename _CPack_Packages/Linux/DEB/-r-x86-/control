@@ -1,0 +1,10 @@
+Architecture: amd64
+Depends: nlohmann-json3
+Description: jsonlogic built using CMake
+Maintainer: nobody
+Package: jsonlogic
+Priority: optional
+Section: devel
+Version: 0.1
+Installed-Size: 23636
+

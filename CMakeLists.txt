@@ -49,7 +49,7 @@ add_library(
         src/operations/string/substr.cpp
 )
 
-find_package(nlohmann_json 3.11.1 REQUIRED)
+find_package(nlohmann_json 3.9.1 REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 add_library(jsonlogic::jsonlogic ALIAS jsonlogic)
