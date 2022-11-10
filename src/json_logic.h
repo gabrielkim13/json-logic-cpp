@@ -7,7 +7,7 @@
 
 #include "nlohmann/json.hpp"
 
-#include "exception.h"
+#include "jsonlogic/exception.h"
 
 using namespace nlohmann;
 

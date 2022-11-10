@@ -2,8 +2,6 @@
 
 #include "nlohmann/json.hpp"
 
-#include "exception.h"
-
 using namespace nlohmann;
 
 namespace json_logic

@@ -70,7 +70,7 @@ install(TARGETS jsonlogic
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
-install(FILES src/json_logic.h src/exception.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/jsonlogic)
+install(FILES src/json_logic.h src/jsonlogic/exception.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/jsonlogic)
 
 SET(CPACK_GENERATOR "DEB")
 SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "nobody")
