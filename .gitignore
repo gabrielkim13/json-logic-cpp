@@ -265,3 +265,6 @@ _deps
 # End of https://www.toptal.com/developers/gitignore/api/git,clion,jetbrains,visualstudiocode,c++,cmake
 
 build
+
+_CPack*
+.cache/
