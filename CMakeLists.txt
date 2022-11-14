@@ -49,7 +49,7 @@ add_library(
         src/operations/string/substr.cpp
 )
 
-find_package(nlohmann_json 3.11.1 REQUIRED)
+find_package(nlohmann_json 3.9.1 REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 add_library(jsonlogic::jsonlogic ALIAS jsonlogic)
@@ -62,3 +62,16 @@ target_include_directories(
 )
 
 add_subdirectory(test)
+
+install(TARGETS jsonlogic
+    COMPONENT jsonlogic
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+install(FILES src/json_logic.h src/jsonlogic/exception.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/jsonlogic)
+
+SET(CPACK_GENERATOR "DEB")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "nobody")
+INCLUDE(CPack)
