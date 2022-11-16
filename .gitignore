@@ -270,3 +270,7 @@ CPack*
 _CPack*
 .cache/
 *.deb
+install_manifest_*.txt
+jsonlogic-*-Linux.*
+DartConfiguration.tcl
+test/lib/googletest/googletest/generated/
