@@ -39,12 +39,12 @@ namespace json_logic
 
                 try
                 {
-                    const auto index{std::stoi(t)};
+                    const auto index{std::stol(t)};
 
                     if (!current.is_array())
                         throw JsonLogicException(__FUNCTION__, "Data object is not an array, but index was provided");
 
-                    if (index >= current.size())
+                    if (static_cast<long unsigned int>(index) >= current.size())
                         throw JsonLogicException(__FUNCTION__, "Array index out of bounds");
 
                     current = current[index];
