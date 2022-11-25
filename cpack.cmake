@@ -68,6 +68,8 @@ if( ${CMAKE_SYSTEM_NAME} STREQUAL "Linux" )
 
     if ( ${CPACK_PACKAGE_ARCHITECTURE} STREQUAL "x86_64" )
         set( CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64" )  # DEB doesn't always use the kernel's arch name
+    elseif ( ${CPACK_PACKAGE_ARCHITECTURE} STREQUAL "aarch64" )
+        set( CPACK_DEBIAN_PACKAGE_ARCHITECTURE "arm64" )  # DEB doesn't always use the kernel's arch name
     else()
         set( CPACK_DEBIAN_PACKAGE_ARCHITECTURE ${CPACK_PACKAGE_ARCHITECTURE} )
     endif()
