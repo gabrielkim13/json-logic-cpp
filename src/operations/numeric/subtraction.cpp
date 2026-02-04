@@ -6,7 +6,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_numeric_subtraction(const json& values, const json& data)
+    json JsonLogic::operation_numeric_subtraction(const json& values, const json& data) const
     {
         if (values.empty() || values.size() > 2)
             throw JsonLogicException(

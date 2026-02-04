@@ -11,7 +11,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_data_var(const json& values, const json& data) // NOLINT(readability-convert-member-functions-to-static)
+    json JsonLogic::operation_data_var(const json& values, const json& data) const // NOLINT(readability-convert-member-functions-to-static)
     {
         json current = data;
 

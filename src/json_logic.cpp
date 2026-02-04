@@ -63,7 +63,7 @@ namespace json_logic
 		return singleton_;
 	}
 
-	json JsonLogic::Apply(const json& logic, const json& data) // NOLINT(google-default-arguments)
+	json JsonLogic::Apply(const json& logic, const json& data) const // NOLINT(google-default-arguments)
 	{
 		if (logic.is_array())
 		{

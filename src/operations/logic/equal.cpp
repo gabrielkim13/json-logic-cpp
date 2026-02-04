@@ -15,7 +15,7 @@ namespace json_logic
 	static bool double_equal(double lhs, double rhs);
 	static bool directional_abstract_equal(const json& lhs, const json& rhs);
 
-    json JsonLogic::operation_logic_strict_equal(const json& values, const json& data)
+    json JsonLogic::operation_logic_strict_equal(const json& values, const json& data) const
     {
         if (values.size() != 2)
             throw JsonLogicException(
@@ -29,7 +29,7 @@ namespace json_logic
         return strict_equal(a, b);
     }
 
-    json JsonLogic::operation_logic_abstract_equal(const json& values, const json& data)
+    json JsonLogic::operation_logic_abstract_equal(const json& values, const json& data) const
     {
         if (values.size() != 2)
             throw JsonLogicException(

@@ -8,7 +8,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_string_substr(const json& values, const json& data)
+    json JsonLogic::operation_string_substr(const json& values, const json& data) const
     {
 		if (values.size() < 2 || values.size() > 3)
 			throw JsonLogicException(

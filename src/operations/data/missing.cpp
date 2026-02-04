@@ -9,7 +9,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_data_missing(const json& values, const json& data)
+    json JsonLogic::operation_data_missing(const json& values, const json& data) const
     {
 		if (values.empty())
 			throw JsonLogicException(
