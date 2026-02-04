@@ -49,6 +49,9 @@ add_library(
         src/operations/string/substr.cpp
 )
 
+# Enable warnings as errors for the library
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
+
 find_package(nlohmann_json 3.9.1 REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)

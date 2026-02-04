@@ -72,7 +72,7 @@ namespace json_logic
 		if (lhs == 1 && rhs == true) return true;
 
 		// 42 == "42.0" -> true
-		if (rhs.is_string() && double_equal(lhs, std::stod(rhs.get<std::string>()))) return true;
+		if (rhs.is_string() && double_equal(lhs.get<double>(), std::stod(rhs.get<std::string>()))) return true;
 
 		// 0 == [] -> true
 		if (rhs.is_array() && rhs.empty() && lhs == 0) return true;

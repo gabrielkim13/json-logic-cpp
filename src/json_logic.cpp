@@ -139,7 +139,7 @@ namespace json_logic
 
 	bool JsonLogic::Truthy(const json& value)
 	{
-		if (value.is_boolean()) return value;
+		if (value.is_boolean()) return value.get<bool>();
 
 		if (value.is_number() && value != 0) return true;
 		if (value.is_array() && !value.empty()) return true;

@@ -25,7 +25,7 @@ namespace json_logic
 			if (!applied_value.is_string())
 				throw JsonLogicException(__FUNCTION__, "All arguments must be strings");
 
-			result += applied_value;
+			result += applied_value.get<std::string>();
 		}
 
 		return result;

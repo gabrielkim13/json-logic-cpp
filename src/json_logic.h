@@ -18,6 +18,7 @@ namespace json_logic
     class IJsonLogic
     {
     public:
+        virtual ~IJsonLogic() = default;
         virtual json Apply(const json& logic, const json& data = json::object()) = 0; // NOLINT(google-default-arguments)
     };
 
