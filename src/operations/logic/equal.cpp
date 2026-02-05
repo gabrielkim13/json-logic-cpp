@@ -15,7 +15,7 @@ namespace json_logic
 	static bool double_equal(double lhs, double rhs);
 	static bool directional_abstract_equal(const json& lhs, const json& rhs);
 
-    json JsonLogic::operation_logic_strict_equal(const json& values, const json& data)
+    json JsonLogic::operation_logic_strict_equal(const json& values, const json& data) const
     {
         if (values.size() != 2)
             throw JsonLogicException(
@@ -29,7 +29,7 @@ namespace json_logic
         return strict_equal(a, b);
     }
 
-    json JsonLogic::operation_logic_abstract_equal(const json& values, const json& data)
+    json JsonLogic::operation_logic_abstract_equal(const json& values, const json& data) const
     {
         if (values.size() != 2)
             throw JsonLogicException(
@@ -72,7 +72,7 @@ namespace json_logic
 		if (lhs == 1 && rhs == true) return true;
 
 		// 42 == "42.0" -> true
-		if (rhs.is_string() && double_equal(lhs, std::stod(rhs.get<std::string>()))) return true;
+		if (rhs.is_string() && double_equal(lhs.get<double>(), std::stod(rhs.get<std::string>()))) return true;
 
 		// 0 == [] -> true
 		if (rhs.is_array() && rhs.empty() && lhs == 0) return true;

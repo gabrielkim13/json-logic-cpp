@@ -6,8 +6,8 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_array_none(const json& values, const json& data)
+    json JsonLogic::operation_array_none(const json& values, const json& data) const
     {
-        return !operations_["some"](values, data);
+        return !operations_.at("some")(values, data);
     }
 }

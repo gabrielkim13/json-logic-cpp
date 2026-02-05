@@ -11,7 +11,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_data_var(const json& values, const json& data) // NOLINT(readability-convert-member-functions-to-static)
+    json JsonLogic::operation_data_var(const json& values, const json& data) const // NOLINT(readability-convert-member-functions-to-static)
     {
         json current = data;
 
@@ -44,7 +44,7 @@ namespace json_logic
                     if (!current.is_array())
                         throw JsonLogicException(__FUNCTION__, "Data object is not an array, but index was provided");
 
-                    if (index >= current.size())
+                    if (static_cast<std::size_t>(index) >= current.size())
                         throw JsonLogicException(__FUNCTION__, "Array index out of bounds");
 
                     current = current[index];

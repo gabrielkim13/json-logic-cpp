@@ -11,7 +11,7 @@ namespace json_logic
 {
     static json cast_to_number(const json& value);
 
-    json JsonLogic::operation_numeric_addition(const json& values, const json& data)
+    json JsonLogic::operation_numeric_addition(const json& values, const json& data) const
     {
 		if (values.empty())
 			throw JsonLogicException(

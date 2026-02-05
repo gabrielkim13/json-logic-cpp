@@ -6,7 +6,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_numeric_min(const json& values, const json& data)
+    json JsonLogic::operation_numeric_min(const json& values, const json& data) const
     {
         if (values.empty())
             throw JsonLogicException(__FUNCTION__, "Expected at least 1 argument");

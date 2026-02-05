@@ -8,7 +8,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_string_cat(const json& values, const json& data)
+    json JsonLogic::operation_string_cat(const json& values, const json& data) const
     {
 		if (values.size() < 2)
 			throw JsonLogicException(
@@ -25,7 +25,7 @@ namespace json_logic
 			if (!applied_value.is_string())
 				throw JsonLogicException(__FUNCTION__, "All arguments must be strings");
 
-			result += applied_value;
+			result += applied_value.get<std::string>();
 		}
 
 		return result;

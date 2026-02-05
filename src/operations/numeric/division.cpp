@@ -8,7 +8,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_numeric_division(const json& values, const json& data)
+    json JsonLogic::operation_numeric_division(const json& values, const json& data) const
     {
         if (values.size() != 2)
             throw JsonLogicException(

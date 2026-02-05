@@ -6,7 +6,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_logic_if(const json& values, const json& data)
+    json JsonLogic::operation_logic_if(const json& values, const json& data) const
     {
         if (values.size() < 3 || values.size() % 2 == 0)
             throw JsonLogicException(

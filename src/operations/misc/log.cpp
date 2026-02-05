@@ -8,7 +8,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_misc_log(const json& values, const json& data)
+    json JsonLogic::operation_misc_log(const json& values, const json& data) const
     {
 		if (values.size() != 1)
 			throw JsonLogicException(

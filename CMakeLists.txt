@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 project(jsonlogic VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include_directories(src)
 
@@ -49,6 +50,9 @@ add_library(
         src/operations/string/substr.cpp
 )
 
+# Enable warnings as errors for the library
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
+
 find_package(nlohmann_json 3.9.1 REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
@@ -58,7 +62,6 @@ target_include_directories(
   ${PROJECT_NAME}
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src/>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/lib/json/include/nlohmann/>
 )
 
 add_subdirectory(test)

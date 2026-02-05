@@ -8,7 +8,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_array_some(const json& values, const json& data)
+    json JsonLogic::operation_array_some(const json& values, const json& data) const
     {
 		if (values.size() != 2)
 			throw JsonLogicException(
@@ -23,7 +23,7 @@ namespace json_logic
 			throw JsonLogicException(__FUNCTION__, "First argument must be an array");
 
 		if (!IsLogic(logic))
-			throw JsonLogicException(__FUNCTION__, "Secong argument must be a logic object");
+			throw JsonLogicException(__FUNCTION__, "Second argument must be a logic object");
 
         return std::any_of(
             array.begin(),

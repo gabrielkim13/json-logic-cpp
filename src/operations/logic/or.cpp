@@ -8,7 +8,7 @@ using namespace nlohmann;
 
 namespace json_logic
 {
-    json JsonLogic::operation_logic_or(const json& values, const json& data)
+    json JsonLogic::operation_logic_or(const json& values, const json& data) const
     {
         return std::any_of(
             values.begin(),
