@@ -270,3 +270,7 @@ CPack*
 _CPack*
 .cache/
 *.deb
+
+# test files
+test/lib/googletest/googletest/generated/
+jsonlogic_test
