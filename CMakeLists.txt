@@ -50,6 +50,12 @@ add_library(
         src/operations/string/substr.cpp
 )
 
+# support proper shared library versioning
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+)
+
 # Enable warnings as errors for the library
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror)
 
