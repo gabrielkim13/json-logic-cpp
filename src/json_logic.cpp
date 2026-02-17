@@ -137,6 +137,14 @@ namespace json_logic
 		return logic.at(GetOperator(logic));
 	}
 
+	bool JsonLogic::IsOperation(const json& logic) const
+	{
+		if (!IsLogic(logic)) return false;
+
+		const auto op { GetOperator(logic) };
+		return operations_.find(op) != operations_.end();
+	}
+
 	bool JsonLogic::Truthy(const json& value)
 	{
 		if (value.is_boolean()) return value.get<bool>();
