@@ -14,14 +14,11 @@ namespace json_logic
                 "Expected 1 or 2 arguments, but received " + std::to_string(values.size())
             );
 
-        const auto a = Apply(values[0], data);
+        const auto a = CastToNumber(Apply(values[0], data));
 
-        if (values.size() == 1 && a.is_number()) return -a.get<double>();
+        if (values.size() == 1) return -a.get<double>();
 
-        const auto b = Apply(values[1], data);
-
-        if (!a.is_number() || !b.is_number())
-            throw JsonLogicException(__FUNCTION__, "All arguments must be numbers");
+        const auto b = CastToNumber(Apply(values[1], data));
 
         return a.get<double>() - b.get<double>();
     }

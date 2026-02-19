@@ -244,3 +244,16 @@ TEST_F(OperationNumericLt, VariablesBetweenFalse2)
 
     EXPECT_FALSE(result);
 }
+
+TEST_F(OperationNumericLt, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            "<": ["5", "10"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_TRUE(result);
+}

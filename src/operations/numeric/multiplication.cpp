@@ -18,11 +18,7 @@ namespace json_logic
 
         for (const auto& value : values)
         {
-            const auto applied_value = Apply(value, data);
-
-            if (!applied_value.is_number())
-                throw JsonLogicException(__FUNCTION__, "All arguments must be numbers");
-
+            const auto applied_value = CastToNumber(Apply(value, data));
             product *= applied_value.get<double>();
         }
 

@@ -82,3 +82,16 @@ TEST_F(OperationNumericSubtraction, VariableNumberToNegative)
 
     EXPECT_EQ(result, -42);
 }
+
+TEST_F(OperationNumericSubtraction, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            "-": ["10", "3"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_EQ(result, 7);
+}

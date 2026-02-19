@@ -137,6 +137,31 @@ namespace json_logic
 		return logic.at(GetOperator(logic));
 	}
 
+    json JsonLogic::CastToNumber(const json& value)
+    {
+        // +42 -> 42
+        if (value.is_number()) return value;
+
+        // +false -> 0
+        // +true -> 1
+        if (value.is_boolean()) return value ? 1 : 0;
+
+        // +[] -> 0
+        // +[42] -> 1
+        if (value.is_array()) return value.empty() ? 0 : 1;
+
+        try
+        {
+            // +"42.0" -> 42.0
+            if (value.is_string()) return std::stod(value.get<std::string>());
+        }
+        catch (...)
+        {
+        }
+
+        throw JsonLogicException(__FUNCTION__, "Invalid cast to number: " + value.dump());
+    }
+
 	bool JsonLogic::Truthy(const json& value)
 	{
 		if (value.is_boolean()) return value.get<bool>();
