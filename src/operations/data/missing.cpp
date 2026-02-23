@@ -1,7 +1,8 @@
 #include "json_logic.h"
 
-#include <set>
 #include <string>
+#include <unordered_set>
+#include <vector>
 
 #include "nlohmann/json.hpp"
 
@@ -17,7 +18,8 @@ namespace json_logic
 				"Expected 1 or more arguments, but received " + std::to_string(values.size())
 			);
 
-        std::set<std::string> missing_keys{};
+        std::vector<std::string> missing_keys{};
+        std::unordered_set<std::string> seen{};
 
         for (const auto& value : values)
         {
@@ -34,7 +36,11 @@ namespace json_logic
             }
             catch (...)
             {
-                missing_keys.insert(key);
+                const auto [_, inserted] = seen.insert(key);
+                if (inserted)
+                {
+                    missing_keys.push_back(key);
+                }
             }
         }
 
