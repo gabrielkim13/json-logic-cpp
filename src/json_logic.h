@@ -43,6 +43,7 @@ namespace json_logic
 		static bool IsLogic(const json& logic);
 		static std::string GetOperator(const json& logic);
 		static const json& GetValues(const json& logic);
+		[[maybe_unused]] bool IsOperation(const json& logic) const;
 
 	private:
         std::unordered_map<std::string, Operation> operations_;
