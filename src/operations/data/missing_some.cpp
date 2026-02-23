@@ -1,7 +1,8 @@
 #include "json_logic.h"
 
-#include <set>
 #include <string>
+#include <unordered_set>
+#include <vector>
 
 #include "nlohmann/json.hpp"
 
@@ -23,8 +24,9 @@ namespace json_logic
         if (!search_values.is_array())
             throw JsonLogicException(__FUNCTION__, "Second argument must be an array");
 
-        std::set<std::string> found_keys{};
-        std::set<std::string> missing_keys{};
+        std::vector<std::string> missing_keys{};
+        std::unordered_set<std::string> found_keys{};
+        std::unordered_set<std::string> seen_missing{};
 
         for (const auto& value : search_values)
         {
@@ -43,7 +45,11 @@ namespace json_logic
             }
             catch (...)
             {
-                missing_keys.insert(key);
+                const auto [_, inserted] = seen_missing.insert(key);
+                if (inserted)
+                {
+                    missing_keys.push_back(key);
+                }
             }
         }
 
