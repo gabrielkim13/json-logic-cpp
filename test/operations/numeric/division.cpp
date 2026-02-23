@@ -48,3 +48,16 @@ TEST_F(OperationNumericDivision, Variable2Operands)
 
     EXPECT_EQ(result, 21);
 }
+
+TEST_F(OperationNumericDivision, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            "/": ["100", "4"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_EQ(result, 25);
+}

@@ -88,3 +88,16 @@ TEST_F(OperationNumericMultiplication, VariableManyOperands)
 
     EXPECT_EQ(result, 24);
 }
+
+TEST_F(OperationNumericMultiplication, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            "*": ["6", "7"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_EQ(result, 42);
+}

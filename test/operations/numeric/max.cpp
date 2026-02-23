@@ -24,17 +24,17 @@ TEST_F(OperationNumericMax, Primitive)
     EXPECT_EQ(result, 12);
 }
 
-TEST_F(OperationNumericMax, IgnoreNonNumbers)
+TEST_F(OperationNumericMax, MixedTypesCasted)
 {
     const auto logic = R"(
         {
-            "max": [4, -3, 5, "12", -2, {}]
+            "max": [4, -3, 5, "12", -2, []]
         }
     )"_json;
 
     const auto result = json_logic_->Apply(logic);
 
-    EXPECT_EQ(result, 5);
+    EXPECT_EQ(result, 12);
 }
 
 TEST_F(OperationNumericMax, Nested)
@@ -84,4 +84,17 @@ TEST_F(OperationNumericMax, NestedOperands)
     const auto result = json_logic_->Apply(logic, data);
 
     EXPECT_EQ(result, 42);
+}
+
+TEST_F(OperationNumericMax, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            "max": ["5", "2", "8", "1"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_EQ(result, 8);
 }

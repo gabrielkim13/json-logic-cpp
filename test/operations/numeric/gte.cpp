@@ -123,3 +123,16 @@ TEST_F(OperationNumericGte, VariablesFalse)
 
     EXPECT_FALSE(result);
 }
+
+TEST_F(OperationNumericGte, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            ">=": ["10", "5"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_TRUE(result);
+}

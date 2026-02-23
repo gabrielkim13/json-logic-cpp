@@ -48,3 +48,16 @@ TEST_F(OperationNumericModulo, Variable2Operands)
 
     EXPECT_EQ(result, 6);
 }
+
+TEST_F(OperationNumericModulo, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            "%": ["17", "5"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_EQ(result, 2);
+}

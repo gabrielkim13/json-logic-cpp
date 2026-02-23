@@ -14,12 +14,9 @@ namespace json_logic
                 "Expected 2 arguments, but received " + std::to_string(values.size())
             );
 
-        const auto a = Apply(values[0], data);
-        const auto b = Apply(values[1], data);
+        const auto a = CastToNumber(Apply(values[0], data));
+        const auto b = CastToNumber(Apply(values[1], data));
 
-        if (!a.is_number_integer() || !b.is_number_integer())
-            throw JsonLogicException(__FUNCTION__, "All arguments must be integers");
-
-        return a.get<int>() % b.get<int>();
+        return static_cast<int>(a.get<double>()) % static_cast<int>(b.get<double>());
     }
 }

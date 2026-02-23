@@ -24,11 +24,11 @@ TEST_F(OperationNumericMin, Primitive)
     EXPECT_EQ(result, -3);
 }
 
-TEST_F(OperationNumericMin, IgnoreNonNumbers)
+TEST_F(OperationNumericMin, MixedTypesCasted)
 {
     const auto logic = R"(
         {
-            "min": [4, -3, 5, "12", -2, {}]
+            "min": [4, -3, 5, "12", -2, []]
         }
     )"_json;
 
@@ -84,4 +84,17 @@ TEST_F(OperationNumericMin, NestedOperands)
     const auto result = json_logic_->Apply(logic, data);
 
     EXPECT_EQ(result, -420);
+}
+
+TEST_F(OperationNumericMin, StringCastToNumber)
+{
+    const auto logic = R"(
+        {
+            "min": ["5", "2", "8", "1"]
+        }
+    )"_json;
+
+    const auto result = json_logic_->Apply(logic);
+
+    EXPECT_EQ(result, 1);
 }
