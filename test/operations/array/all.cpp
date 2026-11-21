@@ -94,3 +94,25 @@ TEST_F(OperationArrayAll, DataFalse)
 
 	EXPECT_FALSE(result);
 }
+
+TEST_F(OperationArrayAll, EmptyArrayIsFalse)
+{
+	const auto logic = R"(
+		{
+			"all": [
+				{ "var": ["items"] },
+				{ ">": [{ "var": [""] }, 0] }
+			]
+		}
+	)"_json;
+
+	const auto data = R"(
+		{
+			"items": []
+		}
+	)"_json;
+
+	const auto result = json_logic_->Apply(logic, data);
+
+	EXPECT_FALSE(result);
+}

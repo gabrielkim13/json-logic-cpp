@@ -25,6 +25,10 @@ namespace json_logic
 		if (!IsLogic(logic))
 			throw JsonLogicException(__FUNCTION__, "Second argument must be a logic object");
 
+        // An empty array is not "all true" in JsonLogic
+        if (array.empty())
+            return false;
+
         return std::all_of(
             array.begin(),
             array.end(),

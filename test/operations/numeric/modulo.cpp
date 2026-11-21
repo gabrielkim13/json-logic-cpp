@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 
 #include "gtest/gtest.h"
@@ -60,4 +61,25 @@ TEST_F(OperationNumericModulo, StringCastToNumber)
     const auto result = json_logic_->Apply(logic);
 
     EXPECT_EQ(result, 2);
+}
+
+TEST_F(OperationNumericModulo, DecimalOperands)
+{
+    EXPECT_EQ(json_logic_->Apply(R"({ "%": [7, 0.5] })"_json), 0);
+    EXPECT_EQ(json_logic_->Apply(R"({ "%": [7.5, 2] })"_json), 1.5);
+    EXPECT_EQ(json_logic_->Apply(R"({ "%": [5.5, 2.5] })"_json), 0.5);
+}
+
+TEST_F(OperationNumericModulo, NegativeOperands)
+{
+    EXPECT_EQ(json_logic_->Apply(R"({ "%": [-7, 3] })"_json), -1);
+    EXPECT_EQ(json_logic_->Apply(R"({ "%": [7, -3] })"_json), 1);
+}
+
+TEST_F(OperationNumericModulo, ZeroDivisorIsNaN)
+{
+    const auto result = json_logic_->Apply(R"({ "%": [7, 0] })"_json);
+
+    ASSERT_TRUE(result.is_number_float());
+    EXPECT_TRUE(std::isnan(result.get<double>()));
 }
