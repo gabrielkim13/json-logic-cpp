@@ -1,5 +1,7 @@
 #include "json_logic.h"
 
+#include <cmath>
+
 #include "nlohmann/json.hpp"
 
 using namespace nlohmann;
@@ -17,6 +19,8 @@ namespace json_logic
         const auto a = CastToNumber(Apply(values[0], data));
         const auto b = CastToNumber(Apply(values[1], data));
 
-        return static_cast<int>(a.get<double>()) % static_cast<int>(b.get<double>());
+        // Same as JavaScript's %: works on decimals, keeps the sign of the
+        // dividend, and gives NaN (not undefined behavior) for a zero divisor.
+        return std::fmod(a.get<double>(), b.get<double>());
     }
 }
