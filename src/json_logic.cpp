@@ -1,5 +1,7 @@
 #include "json_logic.h"
 
+#include <cmath>
+
 #include <algorithm>
 
 #include "nlohmann/json.hpp"
@@ -174,6 +176,9 @@ namespace json_logic
 	{
 		if (value.is_boolean()) return value.get<bool>();
 
+		// NaN is falsy, like in JavaScript (e.g. {"%": [1, 0]} or {"/": [0, 0]}).
+		// nlohmann/json before 3.11 treats NaN != 0 as true, so check it here.
+		if (value.is_number_float() && std::isnan(value.get<double>())) return false;
 		if (value.is_number() && value != 0) return true;
 		if (value.is_array() && !value.empty()) return true;
 		if (value.is_string() && !std::string{value}.empty()) return true;

@@ -140,3 +140,10 @@ TEST_F(OperationLogicTruthy, NestedFalse)
 
 	EXPECT_FALSE(result);
 }
+
+TEST_F(OperationLogicTruthy, NaNIsFalse)
+{
+	EXPECT_EQ(json_logic_->Apply(R"({ "!!": [{ "%": [1, 0] }] })"_json), false);
+	EXPECT_EQ(json_logic_->Apply(R"({ "!!": [{ "/": [0, 0] }] })"_json), false);
+	EXPECT_EQ(json_logic_->Apply(R"({ "if": [{ "%": [1, 0] }, "yes", "no"] })"_json), "no");
+}
