@@ -48,10 +48,10 @@ namespace json_logic
 
 			substr_length = value3.get<int>() >= 0 ? value3.get<int>() : str.length() - start_index + value3.get<int>();
 
-			if (substr_length >= str.length() - start_index)
+			if (substr_length > str.length() - start_index)
 				throw JsonLogicException(
 					__FUNCTION__,
-					"Substr length must be a positive integer less than the string's length minus the start index"
+					"Substr length must not be greater than the string's length minus the start index"
 				);
 		}
 

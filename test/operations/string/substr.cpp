@@ -63,6 +63,14 @@ TEST_F(OperationStringSubstr, PrimitiveStartIndexPositiveSubstrLengthNegative)
 	EXPECT_EQ(result, "log");
 }
 
+TEST_F(OperationStringSubstr, PrimitiveSubstrLengthUpToEndOfString)
+{
+	EXPECT_EQ(json_logic_->Apply(R"({"substr": ["jsonlogic", 4, 5]})"_json), "logic");
+	EXPECT_EQ(json_logic_->Apply(R"({"substr": ["jsonlogic", -5, 5]})"_json), "logic");
+	EXPECT_EQ(json_logic_->Apply(R"({"substr": ["jsonlogic", -1, 1]})"_json), "c");
+	EXPECT_EQ(json_logic_->Apply(R"({"substr": ["jsonlogic", 0, 9]})"_json), "jsonlogic");
+}
+
 TEST_F(OperationStringSubstr, VariableStartIndexPositiveNoSubstrLength)
 {
 	const auto logic = R"(
